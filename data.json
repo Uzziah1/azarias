@@ -1,0 +1,52 @@
+{
+  "greencity": {
+    "titre": "GreenCity - Identité Visuelle",
+    "client": "GreenCity",
+    "annee": "2024",
+    "type": "UI/UX",
+    "description": "Création d'une identité visuelle complète pour une entreprise spécialisée dans les solutions écologiques en milieu urbain.",
+    "objectifs": "Développer un branding cohérent, moderne et durable incluant logo, charte graphique et supports imprimés.",
+    "images": ["greencity-logo.png", "greencity-charte.jpg", "greencity-print.jpg"],
+    "outils": ["photoshop", "illustrator", "indesign"]
+  },
+  "culturefest": {
+    "titre": "CultureFest - Affiche Événementielle",
+    "client": "CultureFest",
+    "annee": "2023",
+    "type": "Graphisme",
+    "description": "Création d’une affiche pour un événement culturel international.",
+    "objectifs": "Mettre en avant la diversité culturelle à travers un visuel fort et coloré.",
+    "images": ["culturefest-affiche.jpg", "culturefest-souvenirs.jpg"],
+    "outils": ["illustrator", "photoshop"]
+  },
+  "brochure": {
+    "titre": "Brochure ÉcoDéfi",
+    "client": "ÉcoDéfi",
+    "annee": "2024",
+    "type": "Dev",
+    "description": "Mise en page professionnelle d’une brochure axée sur le développement durable.",
+    "objectifs": "Présenter clairement les enjeux et solutions écologiques.",
+    "images": ["brochure1.jpg", "brochure2.jpg"],
+    "outils": ["indesign", "photoshop"]
+  },
+  "devnow": {
+    "titre": "Carte de visite DevNow",
+    "client": "DevNow",
+    "annee": "2024",
+    "type": "Graphisme",
+    "description": "Création d’une carte de visite moderne pour une startup tech.",
+    "objectifs": "Transmettre une image professionnelle et innovante.",
+    "images": ["devnow1.jpg"],
+    "outils": ["illustrator", "photoshop"]
+  },
+  "lafi": {
+    "titre": "Packaging Lafi",
+    "client": "Lafi",
+    "annee": "2023",
+    "type": "Dev",
+    "description": "Packaging pour une gamme de cosmétiques naturels locaux.",
+    "objectifs": "Mettre en avant l’authenticité et la naturalité des produits.",
+    "images": ["lafi1.jpg", "lafi2.jpg"],
+    "outils": ["photoshop"]
+  }
+}

@@ -1,0 +1,138 @@
+<header class="bg-white shadow px-6 py-4 flex items-center justify-between">
+  <div class="text-green-700 font-bold text-xl border border-green-700 px-3 py-1" style="color: #3EC43E; font-size: 12px;">
+    AZARIAS
+  </div>
+
+  <!-- Menu desktop -->
+  <nav class="hidden lg:flex gap-6 text-sm font-medium">
+    <a href="index.html" data-key="menu_home" class="text-green-700 hover:text-green-900">Accueil</a>
+    <a href="expertise.html" data-key="menu_expert" class="text-black hover:text-green-700">Expertises</a>
+    <a href="contact.html" data-key="menu_contact" class="text-black hover:text-green-700">Me contacter</a>
+  </nav>
+
+  <!-- Language switcher desktop -->
+  <div class="hidden lg:block relative">
+    <button id="langBtn" class="flex items-center gap-1 font-bold text-green-700">
+      <img id="currentFlag" src="https://flagcdn.com/fr.svg" alt="FR" class="w-5 h-5" />
+      <span id="currentLang">FR</span>
+    </button>
+    <div id="langMenu" class="absolute right-0 mt-2 bg-white border rounded shadow hidden w-24">
+      <div class="flex items-center px-3 py-2 hover:bg-gray-100 cursor-pointer" data-lang="fr">
+        <img src="https://flagcdn.com/fr.svg" alt="FR" class="w-5 h-5 mr-2" /> FR
+      </div>
+      <div class="flex items-center px-3 py-2 hover:bg-gray-100 cursor-pointer" data-lang="en">
+        <img src="https://flagcdn.com/gb.svg" alt="EN" class="w-5 h-5 mr-2" /> EN
+      </div>
+    </div>
+  </div>
+
+  <!-- Hamburger button mobile -->
+  <button id="menuBtn" class="lg:hidden flex items-center text-green-700 focus:outline-none" aria-label="Toggle menu">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+         viewBox="0 0 24 24">
+      <path d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+</header>
+
+<!-- Mobile menu -->
+<div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-200 shadow-md px-6 py-4">
+  <nav class="flex flex-col gap-4 text-sm font-medium">
+    <a href="index.html" data-key="menu_home" class="text-green-700 hover:text-green-900">Accueil</a>
+    <a href="expertise.html" data-key="menu_expert" class="text-black hover:text-green-700">Expertises</a>
+    <a href="contact.html" data-key="menu_contact" class="text-black hover:text-green-700">Me contacter</a>
+  </nav>
+
+  <!-- Language switcher mobile -->
+  <div class="mt-4 border-t pt-4">
+    <div class="flex items-center gap-4">
+      <button id="langBtnMobile" class="flex items-center gap-1 font-bold text-green-700">
+        <img id="currentFlagMobile" src="https://flagcdn.com/fr.svg" alt="FR" class="w-5 h-5" />
+        <span id="currentLangMobile">FR</span>
+      </button>
+      <div id="langMenuMobile" class="absolute mt-2 bg-white border rounded shadow hidden w-24">
+        <div class="flex items-center px-3 py-2 hover:bg-gray-100 cursor-pointer" data-lang="fr">
+          <img src="https://flagcdn.com/fr.svg" alt="FR" class="w-5 h-5 mr-2" /> FR
+        </div>
+        <div class="flex items-center px-3 py-2 hover:bg-gray-100 cursor-pointer" data-lang="en">
+          <img src="https://flagcdn.com/gb.svg" alt="EN" class="w-5 h-5 mr-2" /> EN
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Toggle mobile menu
+  /*const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  // Language switcher desktop
+  const langBtn = document.getElementById('langBtn');
+  const langMenu = document.getElementById('langMenu');
+  const currentLangSpan = document.getElementById('currentLang');
+  const currentFlag = document.getElementById('currentFlag');
+
+  langBtn.addEventListener('click', () => {
+    langMenu.classList.toggle('hidden');
+  });
+
+  langMenu.querySelectorAll('[data-lang]').forEach(item => {
+    item.addEventListener('click', () => {
+      const lang = item.getAttribute('data-lang');
+      currentLangSpan.textContent = lang.toUpperCase();
+      currentFlag.src = lang === 'fr' ? 'https://flagcdn.com/fr.svg' : 'https://flagcdn.com/gb.svg';
+      langMenu.classList.add('hidden');
+
+      document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        el.textContent = translations[lang][key];
+      });
+    });
+  });
+
+  // Language switcher mobile
+  const langBtnMobile = document.getElementById('langBtnMobile');
+  const langMenuMobile = document.getElementById('langMenuMobile');
+  const currentLangMobile = document.getElementById('currentLangMobile');
+  const currentFlagMobile = document.getElementById('currentFlagMobile');
+
+  langBtnMobile.addEventListener('click', () => {
+    langMenuMobile.classList.toggle('hidden');
+  });
+
+  langMenuMobile.querySelectorAll('[data-lang]').forEach(item => {
+    item.addEventListener('click', () => {
+      const lang = item.getAttribute('data-lang');
+      currentLangMobile.textContent = lang.toUpperCase();
+      currentFlagMobile.src = lang === 'fr' ? 'https://flagcdn.com/fr.svg' : 'https://flagcdn.com/gb.svg';
+      langMenuMobile.classList.add('hidden');
+
+      document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        el.textContent = translations[lang][key];
+      });
+    });
+  });
+
+  // Colorisation lien actif (desktop + mobile)
+  function highlightActiveLinks() {
+    const currentPath = window.location.pathname.split('/').pop();
+    const allLinks = document.querySelectorAll('nav a');
+
+    allLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href === currentPath) {
+        link.classList.add('text-[#3EC43E]', 'font-bold');
+        link.classList.remove('text-black');
+      } else {
+        link.classList.remove('text-[#3EC43E]', 'font-bold');
+        link.classList.add('text-black');
+      }
+    });
+  }
+  highlightActiveLinks();*/
+</script>

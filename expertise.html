@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Azarias - Tégawendé Azaria Kaboré</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-[#d7e4d7] via-[#d7e4d7] to-[#d7e4d700] text-gray-900">
+
+  <!-- Topbar dynamique -->
+  <div id="topbar"></div>
+
+  <!-- Section Expertises -->
+  <section class="px-6 md:px-20 py-12">
+    <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-center max-w-4xl mx-auto leading-relaxed mb-10" data-key="expert_intro">
+      Entre design, code et identité visuelle, je façonne des expériences digitales cohérentes et impactantes
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Bloc FRONTEND -->
+      <div class="flex flex-col bg-[#cfe1d1] rounded-xl overflow-hidden transition-transform hover:scale-[1.02] hover:shadow-xl">
+        <div class="p-6 flex-1 border border-white">
+          <h3 class="text-green-700 font-bold text-xl mb-2">&lt; &gt; FRONTEND</h3>
+          <p class="text-sm mb-3">Je conçois et développe des interfaces web modernes, réactives et optimisées pour l’expérience utilisateur.</p>
+          <p class="text-sm mb-3">J’utilise les technologies suivantes : React, HTML, CSS, Bootstrap et Tailwind CSS</p>
+          <ul class="text-sm list-disc pl-5 space-y-1">
+            <li>Sites vitrines modernes</li>
+            <li>Boutiques e-commerce</li>
+            <li>Dashboards d’administration</li>
+            <li>Applications web dynamiques</li>
+          </ul>
+          <p class="text-sm mt-2">Mes interfaces sont performantes et adaptables à tous les écrans (Responsive)</p>
+        </div>
+        <a href="dev.html" class="w-full bg-green-600 hover:bg-green-700 text-white text-center py-3 font-semibold">Voir mes projets frontend</a>
+      </div>
+
+      <!-- Bloc UI/UX -->
+      <div class="flex flex-col bg-[#cfe1d1] rounded-xl overflow-hidden transition-transform hover:scale-[1.02] hover:shadow-xl">
+        <div class="p-6 flex-1 border border-white">
+          <h3 class="text-green-700 font-bold text-xl mb-2">🧩 UI/UX</h3>
+          <p class="text-sm mb-3">Je conçois des interfaces centrées sur l’utilisateur, où esthétique et fonctionnalité vont de pair.</p>
+          <p class="text-sm mb-3">Avec Figma, je crée des maquettes précises, des prototypes interactifs, et des parcours utilisateurs fluides.</p>
+          <p class="text-sm font-semibold">Mon approche :</p>
+          <ul class="text-sm list-disc pl-5 space-y-1">
+            <li>Comprendre les besoins réels des utilisateurs</li>
+            <li>Créer des user flows clairs et logiques</li>
+            <li>Designer des interfaces modernes, accessibles et cohérentes</li>
+            <li>Prototyper et tester pour améliorer l’expérience globale</li>
+          </ul>
+        </div>
+        <a href="ux.html" class="w-full bg-green-600 hover:bg-green-700 text-white text-center py-3 font-semibold">Voir mes projets UI/UX</a>
+      </div>
+
+      <!-- Bloc GRAPHISME -->
+      <div class="flex flex-col bg-[#cfe1d1] rounded-xl overflow-hidden transition-transform hover:scale-[1.02] hover:shadow-xl">
+        <div class="p-6 flex-1 border border-white">
+          <h3 class="text-green-700 font-bold text-xl mb-2">🖌 GRAPHISME</h3>
+          <p class="text-sm mb-3">Je crée des visuels percutants et cohérents qui renforcent l’image de marque.</p>
+          <p class="text-sm mb-3">Avec Photoshop et Illustrator, je conçois des supports graphiques à la fois esthétiques, professionnels et adaptés à chaque usage.</p>
+          <p class="text-sm font-semibold">Mes réalisations incluent :</p>
+          <ul class="text-sm list-disc pl-5 space-y-1">
+            <li>Affiches publicitaires et visuels événementiels</li>
+            <li>Étiquettes de produits (alimentaires, cosmétiques, etc.)</li>
+            <li>Logos et chartes graphiques complètes</li>
+            <li>Identités visuelles sur mesure</li>
+          </ul>
+          <p class="text-sm font-semibold mt-3">Mon approche branding :</p>
+          <ul class="text-sm list-disc pl-5 space-y-1">
+            <li>Comprendre les valeurs et la cible de la marque</li>
+            <li>Définir une identité visuelle unique et différenciante</li>
+            <li>Créer des visuels qui inspirent confiance, style et cohérence</li>
+          </ul>
+        </div>
+        <a href="graphisme.html" class="w-full bg-green-600 hover:bg-green-700 text-white text-center py-3 font-semibold">Voir mes conceptions graphiques</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chargement dynamique du topbar + script -->
+  <script>
+    fetch('components/topbar.html')
+      .then(res => res.text())
+      .then(html => {
+        const topbarContainer = document.getElementById('topbar');
+        topbarContainer.innerHTML = html;
+
+        // Menu mobile
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (menuBtn && mobileMenu) {
+          menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+          });
+        }
+
+        // Switcher langue
+        const scriptLang = document.createElement('script');
+        scriptLang.src = 'lang.js';
+        document.body.appendChild(scriptLang);
+
+        scriptLang.onload = () => {
+          const langBtn = document.getElementById('langBtn');
+          const langMenu = document.getElementById('langMenu');
+          const currentLangSpan = document.getElementById('currentLang');
+          const currentFlag = document.getElementById('currentFlag');
+
+          langBtn.addEventListener('click', () => {
+            langMenu.classList.toggle('hidden');
+          });
+
+          langMenu.querySelectorAll('[data-lang]').forEach(item => {
+            item.addEventListener('click', () => {
+              const lang = item.getAttribute('data-lang');
+              currentLangSpan.textContent = lang.toUpperCase();
+              currentFlag.src = lang === 'fr'
+                ? 'https://flagcdn.com/fr.svg'
+                : 'https://flagcdn.com/gb.svg';
+              langMenu.classList.add('hidden');
+
+              document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                el.textContent = translations[lang][key];
+              });
+            });
+          });
+        };
+
+        // Lien actif
+        const currentPath = window.location.pathname.split('/').pop();
+        const links = topbarContainer.querySelectorAll('nav a');
+        links.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href === currentPath) {
+            link.classList.add('text-[#3EC43E]', 'font-bold');
+            link.classList.remove('text-black');
+          } else {
+            link.classList.add('text-black');
+          }
+        });
+      })
+      .catch(err => console.error('Erreur chargement topbar:', err));
+  </script>
+
+</body>
+</html>
