@@ -82,70 +82,78 @@
     </div>
   </section>
 
-  <!-- Chargement dynamique du topbar + script -->
-  <script>
-    fetch('components/topbar.html')
-      .then(res => res.text())
-      .then(html => {
-        const topbarContainer = document.getElementById('topbar');
-        topbarContainer.innerHTML = html;
+  <!-- Chargement du topbar -->
+<script>
+  fetch('components/topbar.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('topbar').innerHTML = html;
 
-        // Menu mobile
-        const menuBtn = document.getElementById('menuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        if (menuBtn && mobileMenu) {
-          menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-          });
-        }
-
-        // Switcher langue
-        const scriptLang = document.createElement('script');
-        scriptLang.src = 'lang.js';
-        document.body.appendChild(scriptLang);
-
-        scriptLang.onload = () => {
-          const langBtn = document.getElementById('langBtn');
-          const langMenu = document.getElementById('langMenu');
-          const currentLangSpan = document.getElementById('currentLang');
-          const currentFlag = document.getElementById('currentFlag');
-
-          langBtn.addEventListener('click', () => {
-            langMenu.classList.toggle('hidden');
-          });
-
-          langMenu.querySelectorAll('[data-lang]').forEach(item => {
-            item.addEventListener('click', () => {
-              const lang = item.getAttribute('data-lang');
-              currentLangSpan.textContent = lang.toUpperCase();
-              currentFlag.src = lang === 'fr'
-                ? 'https://flagcdn.com/fr.svg'
-                : 'https://flagcdn.com/gb.svg';
-              langMenu.classList.add('hidden');
-
-              document.querySelectorAll('[data-key]').forEach(el => {
-                const key = el.getAttribute('data-key');
-                el.textContent = translations[lang][key];
-              });
-            });
-          });
-        };
-
-        // Lien actif
-        const currentPath = window.location.pathname.split('/').pop();
-        const links = topbarContainer.querySelectorAll('nav a');
-        links.forEach(link => {
-          const href = link.getAttribute('href');
-          if (href === currentPath) {
-            link.classList.add('text-[#3EC43E]', 'font-bold');
-            link.classList.remove('text-black');
-          } else {
-            link.classList.add('text-black');
-          }
+      // Menu hamburger
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
         });
-      })
-      .catch(err => console.error('Erreur chargement topbar:', err));
-  </script>
+      }
+
+      // Colorisation lien actif
+      const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+      const allLinks = document.querySelectorAll('nav a');
+      allLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === currentPath) {
+          link.classList.add('text-[#3EC43E]', 'font-bold');
+        }
+      });
+
+      // Charger lang.js puis initialiser le switch langue
+      const langScript = document.createElement('script');
+      langScript.src = 'lang.js';
+      langScript.onload = initLanguageSwitcher;
+      document.body.appendChild(langScript);
+    });
+
+  function initLanguageSwitcher() {
+    const langBtn = document.getElementById('langBtn');
+    const langMenu = document.getElementById('langMenu');
+    const currentLangSpan = document.getElementById('currentLang');
+    const currentFlag = document.getElementById('currentFlag');
+
+    if (!langBtn || !langMenu || !currentLangSpan || !currentFlag) return;
+
+    let currentLang = localStorage.getItem('siteLang') || 'fr';
+    updateLanguage(currentLang);
+
+    langBtn.addEventListener('click', () => {
+      langMenu.classList.toggle('hidden');
+    });
+
+    document.querySelectorAll('[data-lang]').forEach(item => {
+      item.addEventListener('click', () => {
+        const lang = item.getAttribute('data-lang');
+        localStorage.setItem('siteLang', lang);
+        updateLanguage(lang);
+        langMenu.classList.add('hidden');
+      });
+    });
+
+    function updateLanguage(lang) {
+      currentLangSpan.textContent = lang.toUpperCase();
+      currentFlag.src = lang === 'fr'
+        ? 'https://flagcdn.com/fr.svg'
+        : 'https://flagcdn.com/gb.svg';
+
+      document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+    }
+  }
+</script>
 
 </body>
 </html>

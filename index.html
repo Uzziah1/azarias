@@ -40,119 +40,48 @@
     </div>
 
     <a href="#contact" class="inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg mt-6 transition text-sm">
-      <span data-key="cta">Commençons à travailler ensemble</span>
+      <span data-key="cta">LET'S GO SIR</span>
     </a>
   </div>
 
-  <!-- Image columns -->
-  <div class="w-full lg:w-1/2 flex gap-4 justify-center">
-    <img src="img/tech.jpg" class="rounded-xl w-1/3 sm:w-1/4 lg:w-1/3 object-cover" alt="tech image" />
-    <img src="img/ux.png" class="rounded-xl w-1/3 sm:w-1/4 lg:w-1/3 object-cover" alt="ux image" />
-    <img src="img/graphi.png" class="rounded-xl w-1/3 sm:w-1/4 lg:w-1/3 object-cover" alt="graphic image" />
+  
+  <!-- Photo avec icônes qui gravitent autour -->
+<div class="w-full lg:w-1/2 flex items-center justify-center relative h-[350px] sm:h-[400px] md:h-[500px]">
+  <!-- Image profil (agrandie) -->
+  <img src="img/profil.jpg" alt="Profil"
+    class="w-44 h-44 sm:w-52 sm:h-52 md:w-64 md:h-64 rounded-full z-20 object-cover shadow-xl border-4 border-white" />
+
+  <!-- Cercle d'icônes -->
+  <div id="iconOrbit"
+    class="absolute w-[280px] h-[280px] sm:w-[300px] sm:h-[300px] md:w-[340px] md:h-[340px] spin-on-hover">
+    <!-- les icônes sont injectées en JS -->
   </div>
-</section>
+</div>
 
-  <!-- Chargement de la topbar -->
-  <!-- Charge dynamiquement le topbar + active le switch + couleur active -->
-<script>
-  fetch('components/topbar.html')
-    .then(res => res.text())
-    .then(html => {
-      const topbarContainer = document.getElementById('topbar');
-      topbarContainer.innerHTML = html;
-      fetch('components/topbar.html')
-  .then(res => res.text())
-  .then(html => {
-    const topbarContainer = document.getElementById('topbar');
-    topbarContainer.innerHTML = html;
-
-    // Script d'activation du menu hamburger et switcher langues
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-
-    // (idem pour le switcher langue desktop et mobile, voir ci-dessous)
-    // ...
-
-    // Colorisation lien actif
-    function highlightActiveLinks() {
-      const currentPath = window.location.pathname.split('/').pop();
-      const allLinks = document.querySelectorAll('nav a');
-
-      allLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href === currentPath) {
-          link.classList.add('text-[#3EC43E]', 'font-bold');
-          link.classList.remove('text-black');
-        } else {
-          link.classList.remove('text-[#3EC43E]', 'font-bold');
-          link.classList.add('text-black');
-        }
-      });
-    }
-    highlightActiveLinks();
-  });
-
-
-      // Charge le fichier de traductions
-      const scriptLang = document.createElement('script');
-      scriptLang.src = 'lang.js';
-      document.body.appendChild(scriptLang);
-
-      scriptLang.onload = () => {
-        // Activer le switch de langue
-        const langBtn = document.getElementById('langBtn');
-        const langMenu = document.getElementById('langMenu');
-        const currentLangSpan = document.getElementById('currentLang');
-        const currentFlag = document.getElementById('currentFlag');
-
-        langBtn.addEventListener('click', () => {
-          langMenu.classList.toggle('hidden');
-        });
-
-        langMenu.querySelectorAll('[data-lang]').forEach(item => {
-          item.addEventListener('click', () => {
-            const lang = item.getAttribute('data-lang');
-            currentLangSpan.textContent = lang.toUpperCase();
-            currentFlag.src = lang === 'fr'
-              ? 'https://flagcdn.com/fr.svg'
-              : 'https://flagcdn.com/gb.svg';
-            langMenu.classList.add('hidden');
-
-            document.querySelectorAll('[data-key]').forEach(el => {
-              const key = el.getAttribute('data-key');
-              el.textContent = translations[lang][key];
-            });
-          });
-        });
-      };
-
-      // Mise en surbrillance du lien actif
-      const currentPath = window.location.pathname.split('/').pop();
-      const links = topbarContainer.querySelectorAll('nav a');
-
-      links.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href === currentPath) {
-          link.classList.add('text-[#3EC43E]', 'font-bold');
-        } else {
-          link.classList.add('text-black');
-        }
-      });
-
-    })
-    .catch(err => console.error('Erreur chargement topbar:', err));
-</script>
-
-
-
+  
 <!-- Conteneur animation -->
 <div id="intro" class="intro-container fixed inset-0 flex items-center justify-center bg-white z-50">
   <h1 id="animated-text" class="text-5xl font-extrabold tracking-widest text-green-700"></h1>
   <div id="rect" class="rectangle"></div>
 </div>
+
+
+<style>
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .spin-on-hover {
+    animation: spin-slow 25s linear infinite;
+  }
+
+  /* Arrête l’animation au survol */
+  .spin-on-hover:hover {
+    animation-play-state: paused;
+  }
+</style>
+
 
 <style>
   .intro-container {
@@ -201,8 +130,59 @@
       width: 0;
       opacity: 0;
     }
+    
   }
 </style>
+
+<style>
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 20s linear infinite;
+  }
+</style>
+
+<script>
+  const icons = [
+    'html.svg',
+    'css.svg',
+    'js.svg',
+    'react.svg',
+    'figma.svg',
+    'photoshop.svg',
+    'illustrator.svg',
+    'indesign.svg',
+    'tailwind.svg',
+    'wordpress.svg',
+    'bootstrap.svg'
+  ];
+
+  const orbit = document.getElementById('iconOrbit');
+  const radius = orbit.offsetWidth / 2 - 20; // rayon dynamique
+  const center = orbit.offsetWidth / 2;
+
+  icons.forEach((icon, i) => {
+    const angle = (2 * Math.PI * i) / icons.length;
+    const x = center + radius * Math.cos(angle);
+    const y = center + radius * Math.sin(angle);
+
+    const img = document.createElement('img');
+    img.src = `img/${icon}`;
+    img.alt = icon.split('.')[0];
+    img.title = icon.split('.')[0].toUpperCase();
+    img.className = 'absolute w-6 sm:w-7 md:w-8';
+    img.style.left = `${x}px`;
+    img.style.top = `${y}px`;
+    img.style.transform = 'translate(-50%, -50%)';
+    orbit.appendChild(img);
+  });
+</script>
+
+
+
 
 <script>
   // Vérifie si l'animation a déjà été jouée
@@ -247,6 +227,80 @@
     document.getElementById('intro').style.display = 'none';
   }
 </script>
+
+<!-- Chargement du topbar -->
+<script>
+  fetch('components/topbar.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('topbar').innerHTML = html;
+
+      // Menu hamburger
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+
+      // Colorisation lien actif
+      const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+      const allLinks = document.querySelectorAll('nav a');
+      allLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === currentPath) {
+          link.classList.add('text-[#3EC43E]', 'font-bold');
+        }
+      });
+
+      // Charger lang.js puis initialiser le switch langue
+      const langScript = document.createElement('script');
+      langScript.src = 'lang.js';
+      langScript.onload = initLanguageSwitcher;
+      document.body.appendChild(langScript);
+    });
+
+  function initLanguageSwitcher() {
+    const langBtn = document.getElementById('langBtn');
+    const langMenu = document.getElementById('langMenu');
+    const currentLangSpan = document.getElementById('currentLang');
+    const currentFlag = document.getElementById('currentFlag');
+
+    if (!langBtn || !langMenu || !currentLangSpan || !currentFlag) return;
+
+    let currentLang = localStorage.getItem('siteLang') || 'fr';
+    updateLanguage(currentLang);
+
+    langBtn.addEventListener('click', () => {
+      langMenu.classList.toggle('hidden');
+    });
+
+    document.querySelectorAll('[data-lang]').forEach(item => {
+      item.addEventListener('click', () => {
+        const lang = item.getAttribute('data-lang');
+        localStorage.setItem('siteLang', lang);
+        updateLanguage(lang);
+        langMenu.classList.add('hidden');
+      });
+    });
+
+    function updateLanguage(lang) {
+      currentLangSpan.textContent = lang.toUpperCase();
+      currentFlag.src = lang === 'fr'
+        ? 'https://flagcdn.com/fr.svg'
+        : 'https://flagcdn.com/gb.svg';
+
+      document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+    }
+  }
+</script>
+
 
 
 </body>
