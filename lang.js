@@ -24,6 +24,6 @@ const translations = {
     why: "Why I build",
     why_text: "Turning ideas into functional visual solutions – from websites and mobile apps to complete visual identities.",
     remote: "Available remotely",
-    cta: "LET'S GO SIR"
+    cta: "LET'S GO DEAR"
   }
 };
