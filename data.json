@@ -10,13 +10,13 @@
     "outils": ["photoshop", "illustrator", "indesign"]
   },
   "culturefest": {
-    "titre": "CultureFest - Affiche Événementielle",
-    "client": "CultureFest",
-    "annee": "2023",
+    "titre": "Branding des bureau de IC-KC",
+    "client": "IC-KC",
+    "annee": "2024",
     "type": "Graphisme",
-    "description": "Création d’une affiche pour un événement culturel international.",
-    "objectifs": "Mettre en avant la diversité culturelle à travers un visuel fort et coloré.",
-    "images": ["culturefest-affiche.jpg", "culturefest-souvenirs.jpg"],
+    "description": "Conception, impression et affichage d'affiches pour brander les nouveaux bureaux d'IC-KC.",
+    "objectifs": "Rendre plus convivial l'espace de travail de IC-KC.",
+    "images": ["ickc.png", "ickc0.png"],
     "outils": ["illustrator", "photoshop"]
   },
   "brochure": {
