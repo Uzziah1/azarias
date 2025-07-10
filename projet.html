@@ -89,41 +89,29 @@
             <p><strong>Année :</strong> ${projet.annee}</p>
             <p><strong>Type :</strong> ${projet.type}</p>
           </div>
+          <h2 class="text-2xl font-bold text-[#154B15] mb-4">Titre du projet</h2>
           <p class="max-w-3xl text-sm text-gray-800 mb-6 whitespace-pre-line">${projet.description}</p>
-          <img src="img/${projet.images[0]}" alt="Image principale du projet ${projet.titre}" class="rounded-lg w-full max-w-2xl mb-10 object-cover" />
 
           <h2 class="text-2xl font-bold text-[#154B15] mb-4">Objectifs du projet</h2>
           <p class="text-sm text-gray-700 mb-6 whitespace-pre-line">${projet.objectifs}</p>
+
+          <img src="img/${projet.images[1]}" alt="Image principale du projet ${projet.titre}" class="rounded-lg w-100 h-100 object-cover" />
 
           <h2 class="text-2xl font-bold text-[#154B15] mb-4">Outils utilisés</h2>
           <ul class="flex gap-6 items-center mb-6 flex-wrap">
             ${projet.outils.map(o => `
               <li>
-                <img src="img/${o}.svg" alt="Logo ${o}" class="w-8 h-8 grayscale hover:grayscale-0 transition" />
+                <img src="img/${o}.svg" alt="Logo ${o}" class="w-8 h-8" />
               </li>
             `).join("")}
           </ul>
-
-          <h2 class="text-2xl font-bold text-[#154B15] mb-4">Galerie du projet</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-            ${projet.images.map(img => `
-              <img 
-                src="img/${img}" 
-                alt="Image du projet ${projet.titre}" 
-                class="rounded-lg cursor-zoom-in object-cover" 
-                tabindex="0" 
-                role="button"
-                aria-label="Ouvrir l'image en grand"
-              />
-            `).join("")}
-          </div>
 
           <a href="${pageRetour}" class="inline-block bg-[#154B15] hover:bg-green-700 text-white px-6 py-3 rounded-lg text-sm transition"> ← Retour au projets </a>
         `;
 
         // Générer les logos outils dans le footer
         footerTools.innerHTML = projet.outils.map(o => `
-          <img src="img/${o}.svg" alt="Logo ${o}" class="w-6 h-6 grayscale hover:grayscale-0 transition" />
+          <img src="img/${o}.svg" alt="Logo ${o}" class="w-6 h-6" />
         `).join("");
 
         // Ajout gestion lightbox images galerie

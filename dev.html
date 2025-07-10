@@ -8,18 +8,67 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { font-family: 'Inter', sans-serif; }
+
     .scroll-section::-webkit-scrollbar { width: 8px; }
     .scroll-section::-webkit-scrollbar-thumb { background-color: #154B15; border-radius: 4px; }
-    .scroll-section {
-      -webkit-overflow-scrolling: touch;
+    .scroll-section { -webkit-overflow-scrolling: touch; }
+
+    .carte-projet {
+      height: 100%;
+    }
+
+    .carte-projet .overlay {
+      font-size: 0.9rem;
+    }
+
+    .image-boite {
+      box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.2);
+      border-radius: 0.75rem; /* arrondi comme la carte */
+      overflow: hidden;
+      height: 100%;
+      position: relative;
+    }
+
+    /* Responsive - tablette et petits écrans ≤1024px */
+    @media (max-width: 1024px) {
+      #project-container > div.flex {
+        flex-direction: column !important;
+        height: auto !important;
+      }
+      #project-container > div.flex > a {
+        width: 100% !important;
+        height: 300px !important;
+        margin-bottom: 1rem;
+      }
+    }
+
+    /* Responsive - mobiles ≤640px */
+    @media (max-width: 640px) {
+      /* Section scrollable un peu moins haute */
+      section {
+        height: 65vh !important;
+      }
+      #project-container > div.flex > a {
+        height: 250px !important;
+      }
+      #project-container a > div.p-3 {
+        padding: 0.5rem !important;
+        font-size: 0.9rem !important;
+      }
+      #project-container a .overlay p {
+        font-size: 0.8rem !important;
+      }
+      #project-container a .overlay span {
+        font-size: 0.8rem !important;
+        padding: 0.25rem 0.75rem !important;
+      }
     }
   </style>
 </head>
 <body class="pt-20 bg-gradient-to-b from-[#d7e4d7] via-[#d7e4d7] to-[#d7e4d700] text-gray-900 overflow-hidden">
 
   <!-- Topbar -->
-  <div id="topbar"class="fixed top-0 left-0 w-full z-50 bg-white shadow-md">
-</div>
+  <div id="topbar" class="fixed top-0 left-0 w-full z-50 bg-white shadow-md"></div>
 
   <!-- Titre -->
   <div class="px-10 pt-6 pb-4">
@@ -28,21 +77,23 @@
 
   <!-- Section scrollable blanche -->
   <section class="w-full h-[70vh] px-10">
-    <div id="project-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 bg-white p-6 h-full overflow-y-scroll scroll-section" style="box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.05);"></div>
+    <div id="project-container" class="bg-white p-4 h-full overflow-y-auto scroll-section rounded-xl space-y-6"
+         style="box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.05);">
+      <!-- Les rangées de projets seront injectées ici -->
+    </div>
   </section>
 
   <!-- Footer fixe -->
   <footer class="fixed bottom-0 w-full px-10 py-4 bg-[#d7e4d7] border-t flex justify-between items-center">
     <div class="flex items-center gap-4">
-      <img src="img/react.svg" alt="React" class="w-6 h-6 " />
-      <img src="img/html.svg" alt="HTML" class="w-6 h-6 " />
-      <img src="img/css.svg" alt="CSS" class="w-6 h-6 " />
+      <img src="img/react.svg" alt="React" class="w-6 h-6" />
+      <img src="img/html.svg" alt="HTML" class="w-6 h-6" />
+      <img src="img/css.svg" alt="CSS" class="w-6 h-6" />
       <img src="img/tailwind.svg" alt="Tailwind" class="w-6 h-6" />
       <img src="img/bootstrap.svg" alt="Bootstrap" class="w-6 h-6" />
       <img src="img/js.svg" alt="JavaScript" class="w-6 h-6" />
       <img src="img/wordpress.svg" alt="WordPress" class="w-6 h-6" />
     </div>
-    <!--<div class="text-xs text-gray-600">© 2025 Azarias. Tous droits réservés.</div>-->
   </footer>
 
   <!-- Script dynamique -->
@@ -50,109 +101,50 @@
     fetch('data.json')
       .then(res => res.json())
       .then(data => {
-        const container = document.getElementById('project-list');
-        Object.entries(data).forEach(([id, projet]) => {
-          if (projet.type.toLowerCase() === 'dev') {
+        const container = document.getElementById('project-container');
+        const projects = Object.entries(data).filter(([_, projet]) => projet.type.toLowerCase() === 'dev');
+
+        for (let i = 0; i < projects.length; i += 3) {
+          const row = document.createElement('div');
+          row.className = "flex h-full gap-6";
+
+          for (let j = i; j < i + 3 && j < projects.length; j++) {
+            const [id, projet] = projects[j];
+
             const card = document.createElement('a');
             card.href = `projet.html?id=${id}`;
-            card.className = "relative group overflow-hidden rounded-xl";
+            card.className = "relative group overflow-hidden rounded-xl bg-white shadow w-1/3 carte-projet flex flex-col";
 
             card.innerHTML = `
-              <img src="img/${projet.images[0]}" class="w-full h-64 object-cover" alt="${projet.titre}" />
-              <div class="p-3 text-center font-semibold text-[#154B15] bg-white">${projet.titre}</div>
-              <div class="absolute inset-0 bg-[#154B15]/80 text-white flex flex-col justify-center items-center text-center px-4 opacity-0 group-hover:opacity-100 transition duration-300">
-                <p class="text-sm mb-2">${projet.description.slice(0, 80)}...</p>
-                <p class="text-xs mb-4 italic">Client : ${projet.client}</p>
-                <span class="border border-white px-4 py-1 rounded-full text-sm hover:bg-white hover:text-[#154B15] transition">Voir les détails</span>
+              <div class="relative flex-1 image-boite">
+                <img src="img/${projet.images[0]}" class="w-full h-full object-cover" alt="${projet.titre}" />
+                <div class="absolute inset-0 bg-[#154B15]/80 text-white flex flex-col justify-center items-center text-center px-4 opacity-0 group-hover:opacity-100 transition duration-300 overlay">
+                  <p class="text-sm mb-2">${projet.description.slice(0, 100)}...</p>
+                  <p class="text-xs mb-4 italic">Client : ${projet.client}</p>
+                  <span class="border border-white px-4 py-1 rounded-full text-sm hover:bg-white hover:text-[#154B15] transition">Voir les détails</span>
+                </div>
+              </div>
+              <div class="p-3 text-center font-semibold text-[#154B15] bg-white">
+                ${projet.titre}
               </div>
             `;
 
-            container.appendChild(card);
+            row.appendChild(card);
           }
-        });
+
+          container.appendChild(row);
+        }
       });
   </script>
 
   <!-- Chargement du topbar -->
-<script>
-  fetch('components/topbar.html')
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById('topbar').innerHTML = html;
-
-      // Menu hamburger
-      const menuBtn = document.getElementById('menuBtn');
-      const mobileMenu = document.getElementById('mobileMenu');
-      if (menuBtn && mobileMenu) {
-        menuBtn.addEventListener('click', () => {
-          mobileMenu.classList.toggle('hidden');
-        });
-      }
-
-      // Colorisation lien actif
-      const currentPath = window.location.pathname.split('/').pop();
-      const expertisePages = ['ux.html', 'dev.html', 'graphisme.html'];
-      const allLinks = document.querySelectorAll('nav a');
-      allLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        if (expertisePages.includes(currentPath) && href === 'expertise.html') {
-      link.classList.add('text-[#3EC43E]', 'font-bold');
-      link.classList.remove('text-black');
-        } else if (href === currentPath) {
-          link.classList.add('text-[#3EC43E]', 'font-bold');
-          link.classList.remove('text-black');
-        } else {
-          link.classList.remove('text-[#3EC43E]', 'font-bold');
-          link.classList.add('text-black');
-        }
+  <script>
+    fetch('components/topbar.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('topbar').innerHTML = html;
       });
-
-      // Charger lang.js puis initialiser le switch langue
-      const langScript = document.createElement('script');
-      langScript.src = 'lang.js';
-      langScript.onload = initLanguageSwitcher;
-      document.body.appendChild(langScript);
-    });
-
-  function initLanguageSwitcher() {
-    const langBtn = document.getElementById('langBtn');
-    const langMenu = document.getElementById('langMenu');
-    const currentLangSpan = document.getElementById('currentLang');
-    const currentFlag = document.getElementById('currentFlag');
-
-    if (!langBtn || !langMenu || !currentLangSpan || !currentFlag) return;
-
-    let currentLang = localStorage.getItem('siteLang') || 'fr';
-    updateLanguage(currentLang);
-
-    langBtn.addEventListener('click', () => {
-      langMenu.classList.toggle('hidden');
-    });
-
-    document.querySelectorAll('[data-lang]').forEach(item => {
-      item.addEventListener('click', () => {
-        const lang = item.getAttribute('data-lang');
-        localStorage.setItem('siteLang', lang);
-        updateLanguage(lang);
-        langMenu.classList.add('hidden');
-      });
-    });
-
-    function updateLanguage(lang) {
-      currentLangSpan.textContent = lang.toUpperCase();
-      currentFlag.src = lang === 'fr'
-        ? 'https://flagcdn.com/fr.svg'
-        : 'https://flagcdn.com/gb.svg';
-
-      document.querySelectorAll('[data-key]').forEach(el => {
-        const key = el.getAttribute('data-key');
-        if (translations[lang] && translations[lang][key]) {
-          el.textContent = translations[lang][key];
-        }
-      });
-    }
-  }
-</script>
+  </script>
 
 </body>
 </html>

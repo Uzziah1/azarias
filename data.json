@@ -1,52 +1,74 @@
 {
-  "greencity": {
-    "titre": "GreenCity - Identité Visuelle",
-    "client": "GreenCity",
-    "annee": "2024",
-    "type": "UI/UX",
-    "description": "Création d'une identité visuelle complète pour une entreprise spécialisée dans les solutions écologiques en milieu urbain.",
-    "objectifs": "Développer un branding cohérent, moderne et durable incluant logo, charte graphique et supports imprimés.",
-    "images": ["greencity-logo.png", "greencity-charte.jpg", "greencity-print.jpg"],
+  "Efficium Solutions": {
+    "titre": "Identité visuelle",
+    "client": "Efficium solutions",
+    "annee": "2025",
+    "type": "Graphisme",
+    "description": "Création d'une identité visuelle complète pour une entreprise spécialisée dans la logistique.",
+    "objectifs": "Développer un branding cohérent, moderne et durable incluant logo, template numérique et bannière RS.",
+    "images": ["efficium0.png", "efficium1.png"],
     "outils": ["photoshop", "illustrator", "indesign"]
   },
-  "culturefest": {
-    "titre": "Branding des bureau de IC-KC",
-    "client": "IC-KC",
-    "annee": "2024",
+  "Tigri Events": {
+    "titre": "Identité visuelle",
+    "client": "Tigri Events",
+    "annee": "2025",
     "type": "Graphisme",
-    "description": "Conception, impression et affichage d'affiches pour brander les nouveaux bureaux d'IC-KC.",
-    "objectifs": "Rendre plus convivial l'espace de travail de IC-KC.",
-    "images": ["ickc.png", "ickc0.png"],
+    "description": "Conception D'une identité visuelle incluant logo et composants pour le site web d'une entreprise spécialisé dans l'événementiel.",
+    "objectifs": "Doter Tigri Events d'une identité visuelle moderne .",
+    "images": ["tigri0.png", "tigri1.png"],
     "outils": ["illustrator", "photoshop"]
   },
-  "brochure": {
-    "titre": "Brochure ÉcoDéfi",
-    "client": "ÉcoDéfi",
-    "annee": "2024",
-    "type": "Dev",
-    "description": "Mise en page professionnelle d’une brochure axée sur le développement durable.",
-    "objectifs": "Présenter clairement les enjeux et solutions écologiques.",
-    "images": ["brochure1.jpg", "brochure2.jpg"],
-    "outils": ["indesign", "photoshop"]
-  },
-  "devnow": {
-    "titre": "Carte de visite DevNow",
-    "client": "DevNow",
+  "Tresor Jus": {
+    "titre": "Etiquette de jus de fruits",
+    "client": "Trésor Jus",
     "annee": "2024",
     "type": "Graphisme",
-    "description": "Création d’une carte de visite moderne pour une startup tech.",
-    "objectifs": "Transmettre une image professionnelle et innovante.",
-    "images": ["devnow1.jpg"],
+    "description": "Conception et impression d'étiquettes pour une la marque de jus naturelles Trésor Jus.",
+    "objectifs": "Attirer l’attention, informer le client, refléter l’identité de la marque et inciter à l’achat.",
+    "images": ["tresor0.png", "tresor1.jpg"],
     "outils": ["illustrator", "photoshop"]
   },
-  "lafi": {
-    "titre": "Packaging Lafi",
-    "client": "Lafi",
-    "annee": "2023",
-    "type": "Dev",
-    "description": "Packaging pour une gamme de cosmétiques naturels locaux.",
-    "objectifs": "Mettre en avant l’authenticité et la naturalité des produits.",
-    "images": ["lafi1.jpg", "lafi2.jpg"],
-    "outils": ["photoshop"]
+  "Adis Tech Expertise": {
+    "titre": "Identité visuelle",
+    "client": "Adis tech Expertise",
+    "annee": "2025",
+    "type": "Graphisme",
+    "description": "Conception d'une identité visuelle complète pour une entreprise évoluant dans la tech.",
+    "objectifs": "Transmettre une image professionnelle et innovante de Adis Tech Expertise.",
+    "images": ["ate0.png", "ate1.png"],
+    "outils": ["illustrator", "photoshop", "indesign"]
+  },
+  "Digital Unity Business ": {
+    "titre": "Conception de logo",
+    "client": "Digital Unity Business",
+    "annee": "2025",
+    "type": "Graphisme",
+    "description": "Conception de logo pour l'entreprise Digital Unity Business évoluant dans les services et le digital.",
+    "objectifs": "Doter Digital Unity Business d'un logo professionnel et distinguant.",
+    "images": ["dub0.png", "dub1.jpg"],
+    "outils": ["illustrator", "photoshop"]
+  },
+
+  "GCOB Paiement": {
+    "titre": "Maquette UI/UX",
+    "client": "Grande Chancellerie des Ordres Burkinabè (GCOB)",
+    "annee": "2025",
+    "type": "UI/UX",
+    "description": "Conception de maquettes et d’un prototype interactif pour une plateforme web et mobile d'intégration de moyen de paiement.",
+    "objectifs": "Le projet visait à offrir une expérience utilisateur fluide et intuitive, adaptée aussi bien aux écrans desktop qu’aux appareils mobiles. J’ai travaillé sur l’architecture des pages, la navigation, ainsi que l’interactivité à travers un prototype réaliste conçu sous Figma, permettant de simuler l’usage final du produit.",
+    "images": ["gcob0.png", "gcob1.jpg"],
+    "outils": ["figma"]
+  },
+
+  "Cashless": {
+    "titre": "Maquette et Prototype interactif UI/UX",
+    "client": "Cashless",
+    "annee": "2025",
+    "type": "UI/UX",
+    "description": "Conception de maquettes et d’un prototype interactif pour une application mobile destinée à la gestion des Personnes Déplacées Internes au Burkina Faso.",
+    "objectifs": "Le projet visait à proposer une interface intuitive, accessible et adaptée au contexte humanitaire, afin de faciliter le suivi, l’enregistrement et la coordination des actions d’aide. Le prototype interactif permet de simuler les parcours utilisateurs clés et d’optimiser l’expérience globale.",
+    "images": ["cashless0.png", "cashless1.jpg"],
+    "outils": ["figma"]
   }
 }
